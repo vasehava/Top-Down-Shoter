@@ -22,6 +22,9 @@ public class Game_Manager : MonoBehaviour {
 
     public GameObject playerPrefab, fastZombiePrefab, slowZombiePrefab;
     public SwipeGuns swipeGuns;
+
+    public Image powerUpicon;
+    public Slider powerUpslider;
     private GameObject camera;
     private bool pause;
     private List<GameObject> zombiesList = new List<GameObject>(200);
@@ -68,6 +71,8 @@ public class Game_Manager : MonoBehaviour {
     public void Restart()
     {
         bloodyScreen.SetActive(false);
+        powerUpicon  .gameObject.SetActive(false);
+        powerUpslider.gameObject.SetActive(false);
         player = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation).transform;
         playerCamera.SetActive(true);
         playerCamera.GetComponentInParent<FollowTarget>().target = player.transform;

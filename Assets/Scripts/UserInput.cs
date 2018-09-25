@@ -73,17 +73,13 @@ public class UserInput : MonoBehaviour
     private float forwardAmount;
     private float turnAmount;
     private bool speedBoosted;
-    [SerializeField]
-    Right_Stick r_stick;
-    [SerializeField]
-    Left_Stick l_stick;
-
-    Vector3 lookPos;
-
-    Animator anim;
-
-    Rigidbody rigidBody;
-
+    private Right_Stick r_stick;
+    private Left_Stick l_stick;
+    private Vector3 lookPos;
+    private Animator anim;
+    private Rigidbody rigidBody;
+    [HideInInspector]
+    public ReloadUI reloadUI;
 
     void Start()
     {
@@ -106,6 +102,8 @@ public class UserInput : MonoBehaviour
 
             powerUpIcon = obj.GetComponentInChildren<PowerUpsUI>().GetComponentInChildren<Image>(true);
             powerUpSlider = obj.GetComponentInChildren<PowerUpsUI>().GetComponentInChildren<Slider>(true);
+
+            reloadUI = obj.GetComponentInChildren<ReloadUI>();
         }
         catch
         {

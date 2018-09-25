@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cc1b3ffd90c7d2341908c6aab2b41a39
+guid: 4284f7f7975bd4940bd496f711e7d149
 timeCreated: 18446744011573954816
 ModelImporter:
   serializedVersion: 22
@@ -161,7 +161,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material__meltyzombie_blue_diffuse_256_tga_001
-    second: {fileID: 2100000, guid: d9799845ade76824e887d5703d50698c, type: 2}
+    second: {fileID: 2100000, guid: f87bae0500f59c84e901b043b6975431, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

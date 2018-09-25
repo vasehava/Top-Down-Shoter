@@ -9,6 +9,7 @@ public class Weapon : MonoBehaviour {
     public string weaponType;
     public float fireRate;
     public int bullets;
+    public float reloadTime = 2f;
 
     public Sprite weaponIcon;
     public AudioClip shoot, reload;
@@ -76,7 +77,7 @@ public class Weapon : MonoBehaviour {
             }
             else if (!reloading)
             {
-                anim.SetBool("Reload", true);
+                //anim.SetBool("Reload", true);
                 StartCoroutine("CloseReload");
             }
             frate = 0;
@@ -102,7 +103,7 @@ public class Weapon : MonoBehaviour {
             }
             else if (!reloading)
             {
-                anim.SetBool("Reload", true);
+                //anim.SetBool("Reload", true);
                 StartCoroutine("CloseReload");
             }
             leftWeapon.frate = 0;
@@ -167,11 +168,13 @@ public class Weapon : MonoBehaviour {
     IEnumerator CloseReload()
     {
         reloading = true;
+        GetComponentInParent<UserInput>().reloadUI.Reloading(reloadTime);
+        print("Close relaod");
         audioSource.Stop();
         audioSource.PlayOneShot(reload);
-        yield return new WaitForSeconds(1);
-        anim.SetBool("Reload", false);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(reloadTime);
+        //anim.SetBool("Reload", false);
+        //yield return new WaitForSeconds(1.2f);
         if (leftWeapon != null)
         {
             bullets = 8;

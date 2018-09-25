@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B701247A-7F2C-5C8F-4698-6D96CB8D56D2}</ProjectGuid>
+    <ProjectGuid>{87D90EAD-54AB-6ED4-7B40-774607C77DF3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\PowerUps\Medpack.cs" />
      <Compile Include="Assets\Scripts\PowerUps\PowerUpsUI.cs" />
      <Compile Include="Assets\Scripts\PowerUps\SpeedBoost.cs" />
+     <Compile Include="Assets\Scripts\ReloadUI.cs" />
      <Compile Include="Assets\Scripts\Right_Stick.cs" />
      <Compile Include="Assets\Scripts\ShootingHandler.cs" />
      <Compile Include="Assets\Scripts\SwipeGuns.cs" />
@@ -117,7 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{D82D8B35-6B77-3566-E7D8-E84E25F8DBC1}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
