@@ -9,14 +9,19 @@ public class HitLogic : MonoBehaviour {
     public GameObject bloodPrefab;
     public ParticleSystem part;
     public ParticleCollisionEvent[] collisionEvents;
+    public int damage = 20;
     private int score = 0;
     private PlayerHealthController healthController = null;
     
     void Start()
     {
-        part = GetComponent<ParticleSystem>();
-        collisionEvents = new ParticleCollisionEvent[16];
-        healthController = GetComponentInParent<PlayerHealthController>();
+        try
+        {
+            part = GetComponent<ParticleSystem>();
+            collisionEvents = new ParticleCollisionEvent[16];
+            healthController = GetComponentInParent<PlayerHealthController>();
+        }
+        catch { }
     }
 
     void OnParticleCollision(GameObject other)
@@ -47,9 +52,16 @@ public class HitLogic : MonoBehaviour {
                 bool b;
                 GameObject ob = null;
                 Instantiate(bloodPrefab, pos, rot);
-                other.GetComponent<IDamage>().ApplyDamage(14, out b, out ob);
+                other.GetComponent<IDamage>().ApplyDamage(damage, out b, out ob);
 
-                if (b) healthController.gameManager.AddScore(5, ref ob);
+                if (b)
+                {
+                    if(healthController == null)
+                        GetComponentInParent<PlayerHealthController>();
+
+                    healthController.gameManager.AddScore(5, ref ob);
+                }
+
 
             }
             i++;

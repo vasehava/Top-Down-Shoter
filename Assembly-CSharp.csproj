@@ -51,24 +51,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CharMove.cs" />
      <Compile Include="Assets\Scripts\DestroyOverTime.cs" />
      <Compile Include="Assets\Scripts\DraGizmos.cs" />
+     <Compile Include="Assets\Scripts\FollowTarget.cs" />
+     <Compile Include="Assets\Scripts\FPS_Counter.cs" />
      <Compile Include="Assets\Scripts\Game_Manager.cs" />
      <Compile Include="Assets\Scripts\HitLogic.cs" />
      <Compile Include="Assets\Scripts\IDamage.cs" />
-     <Compile Include="Assets\Scripts\Medpack\Medpack.cs" />
-     <Compile Include="Assets\Scripts\Player\FollowTarget.cs" />
-     <Compile Include="Assets\Scripts\Player\LaserAim.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerHealthController.cs" />
-     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
+     <Compile Include="Assets\Scripts\LaserAim.cs" />
+     <Compile Include="Assets\Scripts\Left_Stick.cs" />
+     <Compile Include="Assets\Scripts\PlayerHealthController.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\Medpack.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\PowerUpsUI.cs" />
+     <Compile Include="Assets\Scripts\PowerUps\SpeedBoost.cs" />
+     <Compile Include="Assets\Scripts\Right_Stick.cs" />
      <Compile Include="Assets\Scripts\ShootingHandler.cs" />
-     <Compile Include="Assets\Scripts\UI\FPS_Counter.cs" />
-     <Compile Include="Assets\Scripts\UI\Left_Stick.cs" />
-     <Compile Include="Assets\Scripts\UI\Right_Stick.cs" />
-     <Compile Include="Assets\Scripts\UI\SwipeGuns.cs" />
+     <Compile Include="Assets\Scripts\SwipeGuns.cs" />
      <Compile Include="Assets\Scripts\UserInput.cs" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieController.cs" />
-     <Compile Include="Assets\Scripts\Zombie\ZombieHitBox.cs" />
+     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\ZombieController.cs" />
+     <Compile Include="Assets\Scripts\ZombieHitBox.cs" />
      <None Include="Assets\Top-Down Apocalyptic World Volume 2 - Military Base\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\Models\Modern Russian Assault Rifle\Notes.txt" />
      <None Include="Assets\Top-Down Apocalyptic World Volume 2 - Military Base\readme.txt" />

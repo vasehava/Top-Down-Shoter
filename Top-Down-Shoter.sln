@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Top-Down-Shoter", "Assembly-CSharp-firstpass.csproj", "{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Top-Down-Shoter", "Assembly-CSharp.csproj", "{87D90EAD-54AB-6ED4-7B40-774607C77DF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6ED4675-B059-7AEB-D8D5-6D08BFB7114A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87D90EAD-54AB-6ED4-7B40-774607C77DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87D90EAD-54AB-6ED4-7B40-774607C77DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87D90EAD-54AB-6ED4-7B40-774607C77DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87D90EAD-54AB-6ED4-7B40-774607C77DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

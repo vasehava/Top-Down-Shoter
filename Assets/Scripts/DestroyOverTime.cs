@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DestroyOverTime : MonoBehaviour {
 
-    public float timeToDestroy = 1.51f;
+    public float timeToDestroy = 1.5f;
 
 	void Start () 
     {

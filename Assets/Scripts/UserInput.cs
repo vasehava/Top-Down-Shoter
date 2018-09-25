@@ -11,7 +11,6 @@ public class Weapons
     private int index = 0;
     private Animator animator;
     public Shooting shooting;
-    //public Text log;
 
     public void Next()
     {
@@ -61,14 +60,19 @@ public class UserInput : MonoBehaviour
     public Weapons weps;
 
 
+
     private AudioSource audioSource;
     private Transform cam;
     private Vector3 camForward; //stores the forward vector of the cam
     private Vector3 move;
     private Vector3 moveInput;
+
+    private Image powerUpIcon;
+    private Slider powerUpSlider;
+
     private float forwardAmount;
     private float turnAmount;
-
+    private bool speedBoosted;
     [SerializeField]
     Right_Stick r_stick;
     [SerializeField]
@@ -83,10 +87,12 @@ public class UserInput : MonoBehaviour
 
     void Start()
     {
+ 
         try
         {
             SetUpAnimator();
             weps.SetUpWeapons(anim);
+            Debug.Log(weps.WeaponIcon.name);
             cam = Camera.main.transform;
 
             anim = GetComponent<Animator>();
@@ -94,47 +100,35 @@ public class UserInput : MonoBehaviour
             rigidBody = GetComponent<Rigidbody>();
 
             audioSource = GetComponent<AudioSource>();
-            r_stick = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Right_Stick>();
-            l_stick = GameObject.FindGameObjectWithTag("UI").GetComponentInChildren<Left_Stick>();
+            GameObject obj = GameObject.Find("GameplayCanvas");//.GetComponentInChildren<Right_Stick>();
+            r_stick = obj.GetComponentInChildren<Right_Stick>();
+            l_stick = obj.GetComponentInChildren<Left_Stick>();
+
+            powerUpIcon = obj.GetComponentInChildren<PowerUpsUI>().GetComponentInChildren<Image>(true);
+            powerUpSlider = obj.GetComponentInChildren<PowerUpsUI>().GetComponentInChildren<Slider>(true);
         }
         catch
         {
-            GetComponent<PlayerHealthController>().logs.text += ("yyy cyk");
+
         }
         StartCoroutine("FootSteps");
-        //if (hidemouse)
-        //{
-        //    Cursor.lockState = CursorLockMode.Confined;
-        //    Cursor.visible = false;       
-        //}
     }
 
     void Update()
     {
-        if (r_stick.Fire)
-            weps.shooting.Invoke();
-
-
-        Vector3 lookDir = new Vector3(r_stick.InputVector_X, 0, r_stick.InputVector_Y);//lookPos - transform.position;
-        Debug.Log(r_stick.InputVector_X + " " + r_stick.InputVector_Y);
-        GetComponent<PlayerHealthController>().logs.text = (lookDir.ToString());
-        lookDir.y = 0;
-        transform.LookAt(transform.position + lookDir, Vector3.up);
         try
         {
-            //if (r_stick.Fire)
-            //    weps.shooting.Invoke();
+            if (r_stick.Fire)
+                weps.shooting.Invoke();
 
 
-            //Vector3 lookDir = new Vector3(r_stick.InputVector_X, 0, r_stick.InputVector_Y);//lookPos - transform.position;
-            //Debug.Log(r_stick.InputVector_X + " " + r_stick.InputVector_Y);
-            //GetComponent<PlayerHealthController>().logs.text = (lookDir.ToString());
-            //lookDir.y = 0;
-            //transform.LookAt(transform.position + lookDir, Vector3.up);
+            Vector3 lookDir = new Vector3(r_stick.InputVector_X, 0, r_stick.InputVector_Y);
+            lookDir.y = 0;
+            transform.LookAt(transform.position + lookDir, Vector3.up);
         }
         catch
         {
-            GetComponent<PlayerHealthController>().logs.text = ("Update Error");
+            
         }
     }
 
@@ -143,7 +137,7 @@ public class UserInput : MonoBehaviour
         float horizontal = l_stick.InputVector_X;   //Input.GetAxis("Horizontal");
         float vertical = l_stick.InputVector_Y; //Input.GetAxis("Vertical");
 
-        if (cam != null) //if there is a camera
+        if (cam != null) 
         {
             camForward = Vector3.Scale(cam.up, new Vector3(1, 0, 1)).normalized;
 			move = vertical * camForward + horizontal * cam.right;
@@ -153,7 +147,7 @@ public class UserInput : MonoBehaviour
             move = vertical * Vector3.forward + horizontal * Vector3.right;
         }
 
-        if (move.magnitude > 1) //Make sure that the movement is normalized
+        if (move.magnitude > 1) 
             move.Normalize();
 
         Move(move);
@@ -238,10 +232,39 @@ public class UserInput : MonoBehaviour
         }
     }
 
+    public bool SpeedBoost(float time, Sprite icon)
+    {
+        if (!speedBoosted)
+        {
+            powerUpIcon.sprite = icon;
+            powerUpIcon.gameObject.SetActive(true);
+            StartCoroutine(_SpeedBoost(time));
+            return true;
+        }
+        return false;
+    }
+
+    private IEnumerator _SpeedBoost(float time)
+    {
+        speedBoosted = true;
+        this.speed = 0.7f;
+        powerUpSlider.value = 0;
+        powerUpSlider.gameObject.SetActive(true);
+        for (int i = 0; i <= powerUpSlider.maxValue; i++)
+        {
+            powerUpSlider.value += 1;
+            yield return new WaitForSeconds(time/powerUpSlider.maxValue);
+
+        }
+        speed = 0.5f;
+        powerUpIcon.gameObject.SetActive(false);
+        powerUpSlider.gameObject.SetActive(false);
+        speedBoosted = false;
+    }
 
     void OnDisable()
     {
-        Cursor.visible = true;
+        
     }
     
 }

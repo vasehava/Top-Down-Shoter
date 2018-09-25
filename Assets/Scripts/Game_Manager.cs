@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class Game_Manager : MonoBehaviour {
 
-    public float startCountOfSlowZombies, startCountOfFastZombies;
-    public int waveTime = 40;
+    public float startCountOfSlowZombies, startCountOfFastZombies, currentSlow, currentFast;
+    public int startWaveTime = 40, waveTime;
 
     public GameObject gameplayCanvas;
     public GameObject menuCanvas;
@@ -21,7 +21,7 @@ public class Game_Manager : MonoBehaviour {
     public List<Transform> zombieSpawnPoints = new List<Transform>();
 
     public GameObject playerPrefab, fastZombiePrefab, slowZombiePrefab;
-
+    public SwipeGuns swipeGuns;
     private GameObject camera;
     private bool pause;
     private List<GameObject> zombiesList = new List<GameObject>(200);
@@ -33,7 +33,10 @@ public class Game_Manager : MonoBehaviour {
         waveNumber.text = "Wave: 1";
         timeToNextWave.text = "Next wave in " + waveTime.ToString() + "s";
         score_text.text = "Score: 0";
-        print(zombiesList.Capacity);
+        //print(zombiesList.Capacity);
+        currentFast = startCountOfFastZombies;
+        currentSlow = startCountOfSlowZombies;
+        waveTime = startWaveTime;
 	}
 	
 	public void Play()
@@ -41,11 +44,10 @@ public class Game_Manager : MonoBehaviour {
         if(!pause)
         {
             gameplayCanvas.SetActive(true);
+            menuCanvas.SetActive(false);
             player = Instantiate(playerPrefab, playerSpawnPoint.position, playerSpawnPoint.rotation).transform;
             playerCamera.SetActive(true);
-
             camera.SetActive(false);
-            menuCanvas.SetActive(false);
             StartCoroutine(InstantiateZombies());
             StartCoroutine(ZombieGenerator());
 
@@ -72,10 +74,15 @@ public class Game_Manager : MonoBehaviour {
         gameplayCanvas.SetActive(true);
         camera.SetActive(false);
         menuCanvas.SetActive(false);
+        currentFast = startCountOfFastZombies;
+        currentSlow = startCountOfSlowZombies;
+
+        waveTime = startWaveTime;
         StartCoroutine(InstantiateZombies());
         StartCoroutine(ZombieGenerator()); waveNumber.text = "Wave: 1";
         timeToNextWave.text = "Next wave in " + waveTime.ToString() + "s";
         score_text.text = "Score: 0";
+        swipeGuns.Init();
     }
     public void Pause()
     {
@@ -87,8 +94,8 @@ public class Game_Manager : MonoBehaviour {
 
     IEnumerator InstantiateZombies()
     {
-        int f = (int)(this.startCountOfFastZombies);
-        int s = (int)(startCountOfSlowZombies);
+        int f = (int)(currentFast);
+        int s = (int)(currentSlow);
         //print(f + " " + s);
         for(int i = 0; i < zombieSpawnPoints.Count; i++)
         {
@@ -132,8 +139,8 @@ public class Game_Manager : MonoBehaviour {
                 timeToNextWave.text = "Next wave in " + (waveTime - i).ToString() + "s";
             }
             //yield return new WaitForSeconds(40);
-            this.startCountOfSlowZombies *= 1.2f;
-            this.startCountOfFastZombies *= 1.2f;
+            this.currentFast *= 1.2f;
+            this.currentSlow *= 1.2f;
             waveTime += 5;
             StartCoroutine(InstantiateZombies());
             waveNumber.text = "Wave: " + (++waveCounter).ToString();
@@ -147,7 +154,7 @@ public class Game_Manager : MonoBehaviour {
             yield return new WaitForEndOfFrame();
             Destroy(zombiesList[i]);
         }
-        print("count = " + zombiesList.Count);
+        //print("count = " + zombiesList.Count);
         zombiesList.Clear();
     }
 
